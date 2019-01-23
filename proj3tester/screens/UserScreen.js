@@ -1,64 +1,71 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+} from 'react-native';
+import Button from 'react-native-button';
 
-const styles = {
-  card: {
-    minWidth: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-};
 
-function SimpleCard(props) {
-  const { classes } = props;
-  const bull = <span className={classes.bullet}>•</span>;
 
-  return (
-    <Card className={classes.card}>
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="h2">
-          be
-          {bull}
-          nev
-          {bull}o{bull}
-          lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
-  );
+export default class HomeScreen extends React.Component {
+  render() {
+    return (
+      <ImageBackground
+        source={require('../assets/images/bg.jpg')}
+        style={styles.container}>
+
+        <View style={styles.overlayContainer}>
+
+          <View>
+            <Text style={styles.header}>enterVal</Text>
+          </View>
+
+          <View>
+            <Text style={styles.timer}>9:30 am</Text>
+          </View>
+          <View>
+            <Button
+              style={{ fontSize: 20, color: '#fff', marginTop: 255, borderColor: '#fa8072', backgroundColor: '#fa8072', padding: 4, paddingLeft: 20, paddingRight: 20, borderRadius: 5, overflow: 'hidden' }}
+              styleDisabled={{ color: 'red' }}
+              onPress={() => this.doSomething()}>
+              get started
+            </Button>
+          </View>
+        </View>
+
+      </ImageBackground>
+    );
+  }
 }
 
-SimpleCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  overlayContainer: {
+    alignItems: 'center',
+    color: 'black',
+    marginTop: 120,
+  },
+  header: {
+    fontSize: 35,
+    borderColor: '#fff',
+    fontWeight: 'bold',
+    color: '#fff',
+    borderWidth: 2,
+    padding: 20,
+    paddingLeft: 40,
+    paddingRight: 40,
+  },
+  timer: {
+    color: '#fff',
+    fontSize: 25,
+    marginTop: 20,
+  }
+});
 
-export default withStyles(styles)(SimpleCard);
+
